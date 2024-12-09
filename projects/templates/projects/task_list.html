@@ -1,0 +1,23 @@
+<!-- projects/templates/projects/task_list.html -->
+
+<h1>Công Việc Của Dự Án: {{ project.name }}</h1>
+
+<!-- Form lọc trạng thái công việc -->
+<form method="GET" action="{% url 'task_list' project.id %}">
+    <select name="status">
+        <option value="">Tất cả trạng thái</option>
+        <option value="not_started" {% if status_filter == 'not_started' %}selected{% endif %}>Chưa bắt đầu</option>
+        <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>Đang thực hiện</option>
+        <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Đã hoàn thành</option>
+    </select>
+    <button type="submit">Lọc</button>
+</form>
+
+<!-- Liệt kê các công việc -->
+<ul>
+    {% for task in tasks %}
+        <li>{{ task.title }} - {{ task.status }}</li>
+    {% empty %}
+        <li>Không có công việc nào.</li>
+    {% endfor %}
+</ul>

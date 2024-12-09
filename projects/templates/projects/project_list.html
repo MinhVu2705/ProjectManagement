@@ -1,0 +1,30 @@
+<!-- projects/templates/projects/project_list.html -->
+
+<h1>Danh Sách Dự Án</h1>
+
+<!-- Form tìm kiếm dự án -->
+<form method="GET" action="{% url 'project_list' %}">
+    <input type="text" name="search" placeholder="Tìm kiếm dự án..." value="{{ search_query }}">
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<!-- Hiển thị các dự án -->
+<ul>
+    {% for project in projects %}
+        <li>
+            <a href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
+            <a href="{% url 'delete_project' project.id %}">[Xóa]</a>  <!-- Xóa dự án -->
+        </li>
+    {% empty %}
+        <li>Không có dự án nào.</li>
+    {% endfor %}
+</ul>
+
+<!-- Hiển thị thông báo nếu có -->
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.level_tag }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}

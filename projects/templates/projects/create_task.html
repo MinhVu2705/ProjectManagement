@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo Nhiệm vụ mới cho Dự án: {{ project.name }}</title>
+</head>
+<body>
+    <h1>Tạo Nhiệm vụ mới cho Dự án: {{ project.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Tạo Nhiệm vụ</button>
+    </form>
+</body>
+</html>

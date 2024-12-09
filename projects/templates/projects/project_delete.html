@@ -1,0 +1,10 @@
+<!-- projects/templates/projects/project_delete.html -->
+
+<h1>Xác Nhận Xóa Dự Án</h1>
+<p>Bạn có chắc chắn muốn xóa dự án "{{ project.name }}" không?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Xóa Dự Án</button>
+    <a href="{% url 'project_detail' project_id=project.id %}" class="btn btn-secondary">Hủy</a>
+</form>

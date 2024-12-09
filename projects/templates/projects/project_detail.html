@@ -1,0 +1,20 @@
+<!-- projects/templates/projects/project_detail.html -->
+
+<h1>{{ project.name }}</h1>
+<p>{{ project.description }}</p>
+
+<!-- Liệt kê các công việc của dự án -->
+<h2>Các Công Việc</h2>
+<ul>
+    {% for task in project.tasks.all %}
+        <li>
+            {{ task.title }} - {{ task.status }}
+            <a href="{% url 'delete_task' project.id task.id %}">[Xóa]</a>  <!-- Xóa công việc -->
+        </li>
+    {% empty %}
+        <li>Không có công việc nào cho dự án này.</li>
+    {% endfor %}
+</ul>
+
+<!-- Liên kết tạo công việc mới -->
+<a href="{% url 'create_task' project.id %}">Tạo công việc mới</a>
