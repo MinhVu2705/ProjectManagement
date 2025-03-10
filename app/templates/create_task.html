@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Create New Task</h2>
+    <form method="POST" class="needs-validation" novalidate>
+        <!-- Task Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Task Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter task name" required>
+            <div class="invalid-feedback">
+                Please provide a task name.
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter task description" required></textarea>
+            <div class="invalid-feedback">
+                Please provide a task description.
+            </div>
+        </div>
+
+        <!-- Deadline -->
+        <div class="mb-3">
+            <label for="deadline" class="form-label">Deadline</label>
+            <input type="date" name="deadline" id="deadline" class="form-control" required>
+            <div class="invalid-feedback">
+                Please provide a deadline.
+            </div>
+        </div>
+
+        <!-- Assign To -->
+        <div class="mb-3">
+            <label for="assigned_to" class="form-label">Assign To</label>
+            <select name="assigned_to" id="assigned_to" class="form-select" required>
+                <option value="" disabled selected>Select a user</option>
+                {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+            <div class="invalid-feedback">
+                Please select a user to assign the task to.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+<script>
+    // Bootstrap form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+{% endblock %}

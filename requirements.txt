@@ -1,0 +1,13 @@
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Migrate
+Flask-Bcrypt
+Flask-Mail
+Flask-APScheduler
+Flask-RESTful
+Flask-JWT-Extended
+Flask-Caching
+flask_login
+pymysql
+plotly

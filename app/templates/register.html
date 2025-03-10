@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Register</h2>
+    <form method="POST" class="row g-3 needs-validation" novalidate>
+        <!-- Username -->
+        <div class="col-md-6">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required>
+            <div class="invalid-feedback">
+                Please provide a username.
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            <div class="invalid-feedback">
+                Please provide a valid email address.
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+            <div class="invalid-feedback">
+                Please provide a password.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Bootstrap form validation
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %}

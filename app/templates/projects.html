@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Projects</h2>
+    <!-- Projects Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>
+                    <a href="{{ url_for('edit_project', project_id=project.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <form method="POST" action="{{ url_for('delete_project', project_id=project.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Create New Project Button -->
+    {% set user = get_user_from_cookie() %}
+    {% if user and user.role == 'Admin' %}
+        <a href="{{ url_for('create_project') }}" class="btn btn-primary">Create New Project</a>
+    {% endif %}
+</div>
+{% endblock %}

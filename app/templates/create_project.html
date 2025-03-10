@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Create New Project</h2>
+    <form method="POST" class="needs-validation" novalidate>
+        <!-- Project Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Project Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter project name" required>
+            <div class="invalid-feedback">
+                Please provide a project name.
+            </div>
+        </div>
+        
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter project description" required></textarea>
+            <div class="invalid-feedback">
+                Please provide a project description.
+            </div>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+<script>
+    // Bootstrap form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+{% endblock %}

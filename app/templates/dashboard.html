@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron bg-light p-5 rounded shadow-sm">
+        <h1 class="display-4">Welcome to the Project Management System</h1>
+        <p class="lead">Manage your projects and tasks efficiently!</p>
+        <hr class="my-4">
+        <p>Get started by creating your first project or viewing existing ones.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('projects') }}" role="button">View Projects</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('tasks', project_id=1) }}" role="button">View Tasks</a>
+    </div>
+</div>
+{% endblock %}

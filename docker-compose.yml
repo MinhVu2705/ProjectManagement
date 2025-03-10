@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: mysql+pymysql://root:password@db/flask_app_db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: flask_app_db
+    ports:
+      - "3307:3307"
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+volumes:
+  db_data:

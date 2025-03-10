@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Edit Task</h2>
+    <form method="POST">
+        <!-- Task Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Task Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ task.name }}" required>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="4" required>{{ task.description }}</textarea>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-select">
+                <option value="Not Started" {% if task.status == 'Not Started' %}selected{% endif %}>Not Started</option>
+                <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ url_for('tasks', project_id=task.project_id) }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
